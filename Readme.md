@@ -3,6 +3,10 @@ _Under construction_
 ## Description
 Randomly generates a musical chord with basis in music theory, that is to say, the notes composing the cord are _not entirely_ random. For now, this program only supports triads, but extended chords are planned to be supported in the near future.
 
+## Compilation Notes
+This project has been tested to compile using the following compiler:
+- gcc 8.1.0 (MinGW-W64)
+
 ## TODO
 1. ~~implement the random chord feature; right now, it prints _all_ the supported chord qualities of a given root note. It must be only one chord, and it should be determined randomly.~~
 2. include support for other chord qualities
