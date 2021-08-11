@@ -7,6 +7,9 @@ typedef enum {
     CHORD_MIN,
     CHORD_DIM,
     CHORD_AUG,
+    CHORD_MAJ7,
+    CHORD_MIN7,
+    CHORD_DOM7,
     CHORD_SUS2,
     CHORD_SUS4,
     CHORD_ENUM_SIZE
@@ -16,6 +19,9 @@ int major[] = {0, 4, 7};
 int minor[] = {0, 3, 7};
 int dim[] = {0, 3, 6};
 int aug[] = {0, 4, 8};
+int maj7[] = {0, 4, 7, 11};
+int min7[] = {0, 3, 7, 10};
+int dom7[] = {0, 4, 7, 10};
 int sus2[] = {0, 2, 7};
 int sus4[] = {0, 5, 7};
 
@@ -26,6 +32,9 @@ int *chords[] = {
     minor,
     dim,
     aug,
+    maj7,
+    min7,
+    dom7,
     sus2,
     sus4
 };
@@ -38,6 +47,9 @@ const int chords_sizes[] = {
     sizeof(minor)/sizeof(minor[0]),
     sizeof(dim)/sizeof(dim[0]),
     sizeof(aug)/sizeof(aug[0]),
+    sizeof(maj7)/sizeof(maj7[0]),
+    sizeof(min7)/sizeof(min7[0]),
+    sizeof(dom7)/sizeof(dom7[0]),
     sizeof(sus2)/sizeof(sus2[0]),
     sizeof(sus4)/sizeof(sus4[0]),
 };
@@ -47,6 +59,9 @@ char *label[] = {
     "min",
     "dim",
     "aug",
+    "maj7",
+    "min7",
+    "dim7",
     "sus2",
     "sus4"
 };
