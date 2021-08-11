@@ -1,87 +1,77 @@
 #include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
 
-// This might not be needed
-enum chord_type {
-    CHORD_MAJOR,
-    CHORD_MINOR,
+#include "chordgen.h"
+
+typedef enum {
+    CHORD_MAJ,
+    CHORD_MIN,
+    CHORD_DIM,
+    CHORD_AUG,
     CHORD_SUS2,
     CHORD_SUS4,
-    ENUM_SIZE
-};
+    CHORD_ENUM_SIZE
+} chord_type;
 
-// Anticipating other chord types,
-// it might be preferred to store
-// these arrays in a (dynamically
-// allocated) array
 int major[] = {0, 4, 7};
 int minor[] = {0, 3, 7};
+int dim[] = {0, 3, 6};
+int aug[] = {0, 4, 8};
 int sus2[] = {0, 2, 7};
 int sus4[] = {0, 5, 7};
 
-int main(int argc, char **argv)
+// Make sure order of arrays correspond
+// to the order of the chord they represent in the enum
+int *chords[] = {
+    major,
+    minor,
+    dim,
+    aug,
+    sus2,
+    sus4
+};
+const int CHORDS_ARR_SIZE = sizeof(chords)/sizeof(chords[0]);
+
+// Again, make sure order of sizes corresponds
+// to the array they describe
+const int chords_sizes[] = {
+    sizeof(major)/sizeof(major[0]),
+    sizeof(minor)/sizeof(minor[0]),
+    sizeof(dim)/sizeof(dim[0]),
+    sizeof(aug)/sizeof(aug[0]),
+    sizeof(sus2)/sizeof(sus2[0]),
+    sizeof(sus4)/sizeof(sus4[0]),
+};
+
+char *label[] = {
+    "maj",
+    "min",
+    "dim",
+    "aug",
+    "sus2",
+    "sus4"
+};
+const int LABEL_ARR_SIZE = sizeof(label)/sizeof(label[0]);
+
+char *notes[] = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
+const int numNotes = sizeof(notes)/sizeof(notes[0]);
+
+// prints all chords based on
+// the given root note to stdout
+void listChords(int root_i)
 {
-    srand(time(0));
-    char notes[12][3] = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
 
-    int root_i = rand() % 12;
-    printf("Chord(s) of the runtime is:\n%s", notes[root_i]);
+    printf("Chord of the runtime is: %s\n", notes[root_i]);
 
-    enum chord_type chord;
-    enum chord_type size = ENUM_SIZE;
+    for(int i = 0; i < CHORD_ENUM_SIZE; i++){
+        printf("%s%s:\t", notes[root_i], label[i]);
 
-    chord = rand() % size;
-
-    switch (chord)
-    {
-    case CHORD_MAJOR:
-        printf("maj: ");
-        for(int i= 0; i < sizeof(major)/sizeof(int); i++) {
-            printf("%s", notes[(root_i + major[i])%12]);
-            if (i == (sizeof(major)/sizeof(int)-1)) {
+        for(int j = 0; j < chords_sizes[i]; j++) {
+            printf("%s", notes[(root_i + chords[i][j]) % numNotes]);
+            if(j == chords_sizes[i]-1) {
                 printf("\n");
-            } else {
+            }else {
                 printf("-");
             }
         }
-        break;
-    case CHORD_MINOR:
-        printf("min: ");
-        for(int i= 0; i < sizeof(minor)/sizeof(int); i++) {
-            printf("%s", notes[(root_i + minor[i])%12]);
-            if (i == (sizeof(minor)/sizeof(int)-1)) {
-                printf("\n");
-            } else {
-                printf("-");
-            }
-        }
-        break;    
-    case CHORD_SUS2:
-        printf("sus2: ");
-        for(int i= 0; i < sizeof(sus2)/sizeof(int); i++) {
-            printf("%s", notes[(root_i + sus2[i])%12]);
-            if (i == (sizeof(sus2)/sizeof(int)-1)) {
-                printf("\n");
-            } else {
-                printf("-");
-            }
-        }
-        break;    
-    case CHORD_SUS4:
-        printf("sus4: ");
-        for(int i= 0; i < sizeof(sus4)/sizeof(int); i++) {
-            printf("%s", notes[(root_i + sus4[i])%12]);
-            if (i == (sizeof(sus4)/sizeof(int)-1)) {
-                printf("\n");
-            } else {
-                printf("-");
-            }
-        }
-        break;    
-    default:
-        break;
     }
-
-    return 0;
 }
