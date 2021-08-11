@@ -14,7 +14,11 @@ typedef enum {
     CHORD_ENUM_SIZE
 } chord_t;
 
+typedef enum {
+    CHORD_NO_NOTES = 1
+} flag_t;
+
 void listChords(int root_i);
-void printChord(int root_i, chord_t chord);
+void printChord(int root_i, chord_t chord, flag_t flag);
 
 #endif
