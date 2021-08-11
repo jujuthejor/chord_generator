@@ -1,19 +1,24 @@
 CC=gcc
 CFLAGS=-g -Wall
-TARGET=chordgen
 
 SRCDIR=src
-BLDDIR=build
+BUILDDIR=build
+BINDIR=bin
 
-BIN=chordgen
+BINS=main.o chordgen.o
+DEPS=$(BINDIR)/main.o $(BINDIR)/chordgen.o
+TARGET=chordgen
 
-all: $(BIN)
+all: $(BINS)
 
-%: $(SRCDIR)\%.c
-	$(CC) $(CFLAGS) $< -o $(BLDDIR)\$@
+target: $(DEPS)
+	$(CC) $(CFLAGS) $^ -o $(BUILDDIR)/$(TARGET)
+
+%.o: $(SRCDIR)\%.c
+	$(CC) $(CFLAGS) -c $< -o $(BINDIR)/$@
 
 debug:
 	$(CC) -g $(CFLAGS) $(wildcard $(SRCDIR)/*.c) -o $(BLDDIR)\$(TARGET) 
 
 clean:
-	rm $(BLDDIR)\$(TARGET).exe
+	del /Q /F $(BUILDDIR)\$(TARGET).exe $(BINDIR)\*.o
