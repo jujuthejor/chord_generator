@@ -2,19 +2,6 @@
 
 #include "chordgen.h"
 
-typedef enum {
-    CHORD_MAJ,
-    CHORD_MIN,
-    CHORD_DIM,
-    CHORD_AUG,
-    CHORD_MAJ7,
-    CHORD_MIN7,
-    CHORD_DOM7,
-    CHORD_SUS2,
-    CHORD_SUS4,
-    CHORD_ENUM_SIZE
-} chord_type;
-
 int major[] = {0, 4, 7};
 int minor[] = {0, 3, 7};
 int dim[] = {0, 3, 6};
@@ -61,7 +48,7 @@ char *label[] = {
     "aug",
     "maj7",
     "min7",
-    "dim7",
+    "dom7",
     "sus2",
     "sus4"
 };
@@ -88,5 +75,123 @@ void listChords(int root_i)
                 printf("-");
             }
         }
+    }
+}
+
+void printChord(int root_i, chord_t chord_type)
+{
+    switch (chord_type)
+    {
+        case CHORD_MAJ:
+            printf("%s%s:\t", notes[root_i], label[CHORD_MAJ]);
+
+            for(int i = 0; i < chords_sizes[CHORD_MAJ]; i++) {
+                printf("%s", notes[(root_i + chords[CHORD_MAJ][i]) % numNotes]);
+                if(i == chords_sizes[CHORD_MAJ]-1) {
+                    printf("\n");
+                }else {
+                    printf("-");
+                }
+            }
+            break;
+        case CHORD_MIN:
+            printf("%s%s:\t", notes[root_i], label[CHORD_MIN]);
+
+            for(int i = 0; i < chords_sizes[CHORD_MIN]; i++) {
+                printf("%s", notes[(root_i + chords[CHORD_MIN][i]) % numNotes]);
+                if(i == chords_sizes[CHORD_MIN]-1) {
+                    printf("\n");
+                }else {
+                    printf("-");
+                }
+            }
+            break;
+        case CHORD_DIM:
+            printf("%s%s:\t", notes[root_i], label[CHORD_DIM]);
+
+            for(int i = 0; i < chords_sizes[CHORD_DIM]; i++) {
+                printf("%s", notes[(root_i + chords[CHORD_DIM][i]) % numNotes]);
+                if(i == chords_sizes[CHORD_DIM]-1) {
+                    printf("\n");
+                }else {
+                    printf("-");
+                }
+            }
+            break;
+        case CHORD_AUG:
+            printf("%s%s:\t", notes[root_i], label[CHORD_AUG]);
+
+            for(int i = 0; i < chords_sizes[CHORD_AUG]; i++) {
+                printf("%s", notes[(root_i + chords[CHORD_AUG][i]) % numNotes]);
+                if(i == chords_sizes[CHORD_AUG]-1) {
+                    printf("\n");
+                }else {
+                    printf("-");
+                }
+            }
+            break;
+        case CHORD_MAJ7:
+            printf("%s%s:\t", notes[root_i], label[CHORD_MAJ7]);
+
+            for(int i = 0; i < chords_sizes[CHORD_MAJ7]; i++) {
+                printf("%s", notes[(root_i + chords[CHORD_MAJ7][i]) % numNotes]);
+                if(i == chords_sizes[CHORD_MAJ7]-1) {
+                    printf("\n");
+                }else {
+                    printf("-");
+                }
+            }
+            break;
+        case CHORD_MIN7:
+            printf("%s%s:\t", notes[root_i], label[CHORD_MIN7]);
+
+            for(int i = 0; i < chords_sizes[CHORD_MIN7]; i++) {
+                printf("%s", notes[(root_i + chords[CHORD_MIN7][i]) % numNotes]);
+                if(i == chords_sizes[CHORD_MIN7]-1) {
+                    printf("\n");
+                }else {
+                    printf("-");
+                }
+            }
+            break;
+        case CHORD_DOM7:
+            printf("%s%s:\t", notes[root_i], label[CHORD_DOM7]);
+
+            for(int i = 0; i < chords_sizes[CHORD_DOM7]; i++) {
+                printf("%s", notes[(root_i + chords[CHORD_DOM7][i]) % numNotes]);
+                if(i == chords_sizes[CHORD_DOM7]-1) {
+                    printf("\n");
+                }else {
+                    printf("-");
+                }
+            }
+            break;
+        case CHORD_SUS2:
+            printf("%s%s:\t", notes[root_i], label[CHORD_SUS2]);
+
+            for(int i = 0; i < chords_sizes[CHORD_SUS2]; i++) {
+                printf("%s", notes[(root_i + chords[CHORD_SUS2][i]) % numNotes]);
+                if(i == chords_sizes[CHORD_SUS2]-1) {
+                    printf("\n");
+                }else {
+                    printf("-");
+                }
+            }
+            break;
+        case CHORD_SUS4:
+            printf("%s%s:\t", notes[root_i], label[CHORD_SUS4]);
+
+            for(int i = 0; i < chords_sizes[CHORD_SUS4]; i++) {
+                printf("%s", notes[(root_i + chords[CHORD_SUS4][i]) % numNotes]);
+                if(i == chords_sizes[CHORD_SUS4]-1) {
+                    printf("\n");
+                }else {
+                    printf("-");
+                }
+            }
+            break;
+        default:
+            printf("Something's amiss...\n");
+            break;
     }
 }
