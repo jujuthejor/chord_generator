@@ -15,7 +15,8 @@ typedef enum {
 } chord_t;
 
 typedef enum {
-    CHORD_NO_NOTES = 1
+    CHORD_CHORD_ONLY = 1,
+    CHORD_NOTES_ONLY
 } flag_t;
 
 void listChords(int root_i);
