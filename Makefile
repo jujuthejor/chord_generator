@@ -5,17 +5,20 @@ SRCDIR=src
 BUILDDIR=build
 BINDIR=bin
 
-BINS=main.o chordgen.o
-DEPS=$(BINDIR)/main.o $(BINDIR)/chordgen.o
+# BINS=main.o chordgen.o
+BINS=$(BINDIR)/chordgen.o
+DEPS=$(SRCDIR)/main.c $(BINS)
 TARGET=chordgen
+
+.PHONY: all target clean
 
 all: $(BINS)
 
 target: $(DEPS)
 	$(CC) $(CFLAGS) $^ -o $(BUILDDIR)/$(TARGET)
 
-%.o: $(SRCDIR)\%.c
-	$(CC) $(CFLAGS) -c $< -o $(BINDIR)/$@
+$(BINDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 debug:
 	$(CC) -g $(CFLAGS) $(wildcard $(SRCDIR)/*.c) -o $(BLDDIR)\$(TARGET) 
