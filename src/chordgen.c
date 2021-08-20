@@ -54,13 +54,13 @@ char *label[] = {
 };
 const int LABEL_ARR_SIZE = sizeof(label)/sizeof(label[0]);
 
-char *notes[] = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
-const int numNotes = sizeof(notes)/sizeof(notes[0]);
+const char *NOTES[] = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
+const int NUM_NOTES = sizeof(NOTES)/sizeof(NOTES[0]);
 
 static void printChordNotes(int root_i, chord_t type)
 {
         for(int i = 0; i < chords_sizes[type]; i++) {
-            printf("%s", notes[(root_i + chords[type][i]) % numNotes]);
+            printf("%s", NOTES[(root_i + chords[type][i]) % NUM_NOTES]);
             if(i == chords_sizes[type]-1) {
                 printf("\n");
             }else {
@@ -74,13 +74,13 @@ static void printChordNotes(int root_i, chord_t type)
 void listChords(int root_i)
 {
 
-    printf("Chord of the runtime is: %s\n", notes[root_i]);
+    printf("Chord of the runtime is: %s\n", NOTES[root_i]);
 
     for(int i = 0; i < CHORD_ENUM_SIZE; i++){
-        printf("%s%s:\t", notes[root_i], label[i]);
+        printf("%s%s:\t", NOTES[root_i], label[i]);
 
         for(int j = 0; j < chords_sizes[i]; j++) {
-            printf("%s", notes[(root_i + chords[i][j]) % numNotes]);
+            printf("%s", NOTES[(root_i + chords[i][j]) % NUM_NOTES]);
             if(j == chords_sizes[i]-1) {
                 printf("\n");
             }else {
@@ -98,13 +98,13 @@ void printChord(int root_i, chord_t chord_type, flag_t flag)
             switch (flag)
             {
                 case CHORD_CHORD_ONLY:
-                    printf("%s%s", notes[root_i], label[CHORD_MAJ]);
+                    printf("%s%s", NOTES[root_i], label[CHORD_MAJ]);
                     break;
                 case CHORD_NOTES_ONLY:
                     printChordNotes(root_i, CHORD_MAJ);
                     break;
                 default:
-                    printf("%s%s:\t", notes[root_i], label[CHORD_MAJ]);
+                    printf("%s%s:\t", NOTES[root_i], label[CHORD_MAJ]);
                     printChordNotes(root_i, CHORD_MAJ);
                     break;
             }
@@ -113,13 +113,13 @@ void printChord(int root_i, chord_t chord_type, flag_t flag)
             switch (flag)
             {
                 case CHORD_CHORD_ONLY:
-                    printf("%s%s", notes[root_i], label[CHORD_MIN]);
+                    printf("%s%s", NOTES[root_i], label[CHORD_MIN]);
                     break;
                 case CHORD_NOTES_ONLY:
                     printChordNotes(root_i, CHORD_MIN);
                     break;
                 default:
-                    printf("%s%s:\t", notes[root_i], label[CHORD_MIN]);
+                    printf("%s%s:\t", NOTES[root_i], label[CHORD_MIN]);
                     printChordNotes(root_i, CHORD_MIN);
                     break;
             }
@@ -128,13 +128,13 @@ void printChord(int root_i, chord_t chord_type, flag_t flag)
             switch (flag)
             {
                 case CHORD_CHORD_ONLY:
-                    printf("%s%s", notes[root_i], label[CHORD_DIM]);
+                    printf("%s%s", NOTES[root_i], label[CHORD_DIM]);
                     break;
                 case CHORD_NOTES_ONLY:
                     printChordNotes(root_i, CHORD_DIM);
                     break;
                 default:
-                    printf("%s%s:\t", notes[root_i], label[CHORD_DIM]);
+                    printf("%s%s:\t", NOTES[root_i], label[CHORD_DIM]);
                     printChordNotes(root_i, CHORD_DIM);
                     break;
             }
@@ -143,13 +143,13 @@ void printChord(int root_i, chord_t chord_type, flag_t flag)
             switch (flag)
             {
                 case CHORD_CHORD_ONLY:
-                    printf("%s%s", notes[root_i], label[CHORD_AUG]);
+                    printf("%s%s", NOTES[root_i], label[CHORD_AUG]);
                     break;
                 case CHORD_NOTES_ONLY:
                     printChordNotes(root_i, CHORD_AUG);
                     break;
                 default:
-                    printf("%s%s:\t", notes[root_i], label[CHORD_AUG]);
+                    printf("%s%s:\t", NOTES[root_i], label[CHORD_AUG]);
                     printChordNotes(root_i, CHORD_AUG);
                     break;
             }
@@ -158,13 +158,13 @@ void printChord(int root_i, chord_t chord_type, flag_t flag)
             switch (flag)
             {
                 case CHORD_CHORD_ONLY:
-                    printf("%s%s", notes[root_i], label[CHORD_MAJ7]);
+                    printf("%s%s", NOTES[root_i], label[CHORD_MAJ7]);
                     break;
                 case CHORD_NOTES_ONLY:
                     printChordNotes(root_i, CHORD_MAJ7);
                     break;
                 default:
-                    printf("%s%s:\t", notes[root_i], label[CHORD_MAJ7]);
+                    printf("%s%s:\t", NOTES[root_i], label[CHORD_MAJ7]);
                     printChordNotes(root_i, CHORD_MAJ7);
                     break;
             }
@@ -173,13 +173,13 @@ void printChord(int root_i, chord_t chord_type, flag_t flag)
             switch (flag)
             {
                 case CHORD_CHORD_ONLY:
-                    printf("%s%s", notes[root_i], label[CHORD_MIN7]);
+                    printf("%s%s", NOTES[root_i], label[CHORD_MIN7]);
                     break;
                 case CHORD_NOTES_ONLY:
                     printChordNotes(root_i, CHORD_MIN7);
                     break;
                 default:
-                    printf("%s%s:\t", notes[root_i], label[CHORD_MIN7]);
+                    printf("%s%s:\t", NOTES[root_i], label[CHORD_MIN7]);
                     printChordNotes(root_i, CHORD_MIN7);
                     break;
             }
@@ -188,13 +188,13 @@ void printChord(int root_i, chord_t chord_type, flag_t flag)
             switch (flag)
             {
                 case CHORD_CHORD_ONLY:
-                    printf("%s%s", notes[root_i], label[CHORD_DOM7]);
+                    printf("%s%s", NOTES[root_i], label[CHORD_DOM7]);
                     break;
                 case CHORD_NOTES_ONLY:
                     printChordNotes(root_i, CHORD_DOM7);
                     break;
                 default:
-                    printf("%s%s:\t", notes[root_i], label[CHORD_DOM7]);
+                    printf("%s%s:\t", NOTES[root_i], label[CHORD_DOM7]);
                     printChordNotes(root_i, CHORD_DOM7);
                     break;
             }
@@ -203,13 +203,13 @@ void printChord(int root_i, chord_t chord_type, flag_t flag)
             switch (flag)
             {
                 case CHORD_CHORD_ONLY:
-                    printf("%s%s", notes[root_i], label[CHORD_SUS2]);
+                    printf("%s%s", NOTES[root_i], label[CHORD_SUS2]);
                     break;
                 case CHORD_NOTES_ONLY:
                     printChordNotes(root_i, CHORD_SUS2);
                     break;
                 default:
-                    printf("%s%s:\t", notes[root_i], label[CHORD_SUS2]);
+                    printf("%s%s:\t", NOTES[root_i], label[CHORD_SUS2]);
                     printChordNotes(root_i, CHORD_SUS2);
                     break;
             }
@@ -218,13 +218,13 @@ void printChord(int root_i, chord_t chord_type, flag_t flag)
             switch (flag)
             {
                 case CHORD_CHORD_ONLY:
-                    printf("%s%s", notes[root_i], label[CHORD_SUS4]);
+                    printf("%s%s", NOTES[root_i], label[CHORD_SUS4]);
                     break;
                 case CHORD_NOTES_ONLY:
                     printChordNotes(root_i, CHORD_SUS4);
                     break;
                 default:
-                    printf("%s%s:\t", notes[root_i], label[CHORD_SUS4]);
+                    printf("%s%s:\t", NOTES[root_i], label[CHORD_SUS4]);
                     printChordNotes(root_i, CHORD_SUS4);
                     break;
             }
