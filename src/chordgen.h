@@ -19,6 +19,9 @@ typedef enum {
     CHORD_NOTES_ONLY
 } flag_t;
 
+extern const char *NOTES[];
+extern const int NUM_NOTES;
+
 void listChords(int root_i);
 void printChord(int root_i, chord_t chord, flag_t flag);
 
