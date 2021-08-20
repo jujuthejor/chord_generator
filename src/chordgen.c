@@ -74,7 +74,7 @@ static void printChordNotes(int root_i, chord_t type)
 void listChords(int root_i)
 {
 
-    printf("Chord of the runtime is: %s\n", NOTES[root_i]);
+    printf("Chords of %s are:\n", NOTES[root_i]);
 
     for(int i = 0; i < CHORD_ENUM_SIZE; i++){
         printf("%s%s:\t", NOTES[root_i], label[i]);
