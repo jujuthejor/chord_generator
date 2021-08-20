@@ -1,6 +1,12 @@
 CC=gcc
 CFLAGS=-g -Wall
 
+ifeq ($(OS), Windows_NT)
+	RM=del /Q /F
+else
+	RM=rm -r
+endif
+
 SRCDIR=src
 BUILDDIR=build
 BINDIR=bin
@@ -20,8 +26,5 @@ target: $(DEPS)
 $(BINDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-debug:
-	$(CC) -g $(CFLAGS) $(wildcard $(SRCDIR)/*.c) -o $(BLDDIR)\$(TARGET) 
-
 clean:
-	del /Q /F $(BUILDDIR)\$(TARGET).exe $(BINDIR)\*.o
+	$(RM) $(BUILDDIR)/$(TARGET).exe $(BINDIR)/*.o
