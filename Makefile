@@ -5,9 +5,9 @@ SRCDIR=src
 BUILDDIR=build
 BINDIR=bin
 
-# BINS=main.o chordgen.o
-BINS=$(BINDIR)/chordgen.o
-DEPS=$(SRCDIR)/main.c $(BINS)
+SRCS=$(wildcard $(SRCDIR)/*.c)
+BINS=$(patsubst  %.c, $(BINDIR)/%.o, $(notdir $(SRCS)))
+DEPS=$(BINS)
 TARGET=chordgen
 
 .PHONY: all target clean
