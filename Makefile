@@ -16,6 +16,12 @@ BINS=$(patsubst  %.c, $(BINDIR)/%.o, $(notdir $(SRCS)))
 DEPS=$(BINS)
 TARGET=chordgen
 
+ifeq ($(OS), Windows_NT)
+	RMTARGET=$(BUILDDIR)\$(TARGET).exe $(BINDIR)\*.o
+else
+	RMTARGET=$(BUILDDIR)/$(TARGET) $(BINDIR)/*.o
+endif 
+
 .PHONY: all target clean
 
 all: $(BINS)
@@ -27,4 +33,4 @@ $(BINDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(BUILDDIR)/$(TARGET).exe $(BINDIR)/*.o
+	$(RM) $(RMTARGET)
